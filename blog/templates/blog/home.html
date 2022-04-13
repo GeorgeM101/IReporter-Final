@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %} {% block content %} {% for posts in posts %}
+<article class="media content-section mt-5">
+  <img
+    class="rounded-cirlce article-img"
+    src="{{ posts.author.profile.image.url }}"
+    alt=""
+  />
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ posts.author }}</a>
+      <small class="text-muted">{{ posts.date_posted }}</small>
+    </div>
+    <h2 class="font-weight-bold">
+      <a class="article-title" href="{% url 'blog-detail' posts.id %}"
+        >{{ posts.title }}</a
+      >
+    </h2>
+    <p class="article-content">{{ posts.content }}</p>
+    <p class="font-weight-bold">
+      Click the button to get location coordinates.
+    </p>
+
+    <button class="btn btn-info" onclick="getLocation()">Get location</button>
+
+    <p id="locate" class="mt-3 font-weight-bold text-success"></p>
+  </div>
+  <br />
+</article>
+
+<script>
+  var x = document.getElementById("locate");
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  function showPosition(position) {
+    x.innerHTML =
+      "Latitude: " +
+      position.coords.latitude +
+      "<br>Longitude: " +
+      position.coords.longitude;
+  }
+</script>
+
+{% endfor %} {% endblock content %}

@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'blog/main.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header" style="background:black;">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top" style="background:black; opacity:0.8;">
+        <div class="container">
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto font-weight-bold">
+              {% if user.is_authenticated %}
+              <a id="auth-links" href="{% url 'blog-home' %}">HOME</a>
+              <a id="auth-links" href="{% url 'map' %}">LOCATION</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav font-weight-bold" >
+              <a href="{% url 'blog-new' %}" id="auth-links">Post Alert</a>
+              <a href="{% url 'video'%}" id="auth-links">
+               Video
+              </a>
+              <a href="{% url 'profile' %}" id="auth-links"> Profile </a>
+
+              <a
+                href="{% url 'profile' %}"
+                id="auth-links"
+                style="text-transform: capitalize"
+              >
+                Welcome {{user.username}}
+              </a>
+              <a href="{% url 'logout' %}" id="auth-links">Logout </a>
+              {% else %}
+              <a href="{% url 'login'%}" id="auth-links">Login</a>
+              <a href="{% url 'register'%}" id="auth-links">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages%} {% for message in messages %}
+          <div class="alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %} {% endif %}
+        </div>
+        <div class="col-md-8">{% block content %}{% endblock %}</div>
+        <div class="col-md-4">
+          <div class="content-section">
+            <div
+              class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white"
+              style="width: 380px"
+              style="padding-top: 120px"
+            >
+              <a
+                id="list-group"
+                style="text-decoration: none"
+                href=""
+                class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"
+              >
+                <!-- <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg> -->
+
+                <span class="fs-5 fw-semibold" id="gist-btn">Latest Gist</span>
+              </a>
+              <div class="list-group list-group-flush border-bottom scrollarea">
+                <a
+                  href="#"
+                  class="list-group-item list-group-item-action lh-tight"
+                  aria-current="true"
+                >
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <strong class="mb-1"> </strong>
+                    <small>Wed</small>
+                  </div>
+                  <div class="col-10 mb-1 small">
+                    <img
+                      src="https://www.worldhighways.com/sites/ropl-wh/files/40549.jpg"
+                      width="100"
+                      height="100"
+                    />
+                    A major constraint with developing and maintaining rural
+                    roads is the fact that they are, unfortunately, rural. The
+                    areas where they are needed are often difficult to access,
+                    logistics become complicated, local contracting capability
+                    is limited, engineers are few and far between, and younger
+                    engineers especially, are not keen to leave the urban
+                    environment.
+                  </div>
+                </a>
+                <a
+                  href="#"
+                  class="list-group-item list-group-item-action py-3 lh-tight"
+                >
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <strong class="mb-1"> </strong>
+                    <small class="text-muted">Thur</small>
+                  </div>
+                  <div class="col-10 mb-1 small"></div>
+                </a>
+                <a
+                  href="#"
+                  class="list-group-item list-group-item-action py-3 lh-tight"
+                >
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <strong class="mb-1">
+                      <img
+                        src="https://cdn.standardmedia.co.ke/images/wednesday/crckj5vaze0el62443ab934cc9.jpg"
+                        width="100"
+                        height="100"
+                      />
+                      Gatundu South Member of Parliament Moses Kuria has lost
+                      the application seeking to bar the IEBC from determining
+                      whether the poll-rigging remarks he made at the UDA
+                      national delegates conference on March 15 breach the
+                      electoral conduct.
+                    </strong>
+                    <small class="text-muted">Mon</small>
+                  </div>
+                  <div class="col-10 mb-1 small"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  
+<div class='container'>
+      <div class="global">
+        <div class="curve"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-md-3">
+              <h6>IReporter</h6>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+  
+            <div class="col-sm-6 col-md-2">
+              <h6>IReporter& Services</h6>
+              <ul>
+                <li><a href="{% url 'blog-home'%}">Home</a></li>
+                <li><a href="{% url 'login'%}">Login</a></li>
+                <li><a href="{% url 'register'%}">Register</a></li>
+              </ul>
+            </div>
+  
+            <div class="col-sm-6 col-md-2">
+              <h6>About</h6>
+              <ul>
+                <li><a href="{% url 'blog-home' %}">Our Story</a></li>
+                <li><a href="{% url 'blog-home' %}">Daily Alerts</a></li>
+                <li><a href="{% url 'blog-home' %}">Team</a></li>
+                <li><a href="{% url 'blog-home' %}">Careers</a></li>
+              </ul>
+            </div>
+  
+            <div class="col-sm-6 col-md-2">
+              <h6>Legal</h6>
+              <ul>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of use</a></li>
+              </ul>
+            </div>
+  
+            <div class="social">
+              <h6>Follow us</h6>
+              <a href="#"><i class="fa fa-facebook"></i> </a>
+              <a href="#"><i class="fa fa-twitter"></i> </a>
+              <a href="#"><i class="fa fa-snapchat-ghost"></i> </a>
+              <a href="#"><i class="fa fa-instagram"></i> </a>
+              <a href="#"><i class="fa fa-google-plus"></i> </a>
+            </div>
+          </div>
+          <p class="copyright">&copy;2022 Copyright All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+      ></script>
+  
+      <script src="static/home.js"></script>
+    </body>
+  </html>
+  
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+    html,
+    body {
+      font-family: "Lato", sans-serif;
+    }
+    .row {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+    .global {
+      top: 125%;
+      padding: 50px;
+      color: #f0f9ff;
+      margin-top: 80px;
+      background: black;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      opacity: 0.9;
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+    .global h6 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+    }
+  
+    .global ul {
+      list-style-type: none;
+      line-height: 30px;
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+    .global ul a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .global ul a:hover {
+      opacity: 0.8;
+      color: #eee;
+    }
+    .global .social {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      padding: 40px;
+      padding-bottom: 0px;
+      border-top: 1px solid #eee;
+      margin-top: 50px;
+    }
+    .global .social a {
+      font-size: 22px;
+      width: 45px;
+      height: 45px;
+      line-height: 39px;
+      display: inline-block;
+      border-radius: 50%;
+      border: 2px solid #05ff05;
+      box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.4);
+      margin: 10px;
+      color: #fff;
+      opacity: 0.7;
+      transition: 0.3s ease-in-out;
+    }
+    .global .social a:hover {
+      opacity: 0.9;
+      box-shadow: 0px 1px 3px 2px rgba(255, 255, 255, 0.9);
+    }
+    .global .copyright {
+      text-align: center;
+      padding-top: 24px;
+      font-weight: 500;
+      opacity: 0.8;
+      font-size: 16px;
+    }
+    @media (max-width: 767px) {
+      .global .curve {
+        left: 5%;
+        height: 70%;
+      }
+      .global h6 {
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .global ul {
+        text-align: center;
+      }
+      .social {
+        margin: 0 auto;
+      }
+    }
+  </style>
+  
+</html>
