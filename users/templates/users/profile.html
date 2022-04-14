@@ -29,8 +29,12 @@
   </form>
 
   <p>
-    <button id="btn-profile" class="btn btn-outline">
-      <a href="{% url 'profile-update' %}" id="auth-links" type="button">
+    <button class="btn btn-outline">
+      <a
+        href="{% url 'profile-update' %}"
+        style="text-decoration: none"
+        class="btn btn-success"
+      >
         Update Profile
       </a>
     </button>
