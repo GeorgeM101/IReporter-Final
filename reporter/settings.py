@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AUthenticcationBackend'
+    'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
 
@@ -72,7 +72,7 @@ ROOT_URLCONF = 'reporter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,11 +148,6 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
-LOGIN_REDIRECT_URL = 'blog-home'
-
 LOGIN_URL = 'login'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -160,3 +155,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 ACCOUNT_ADAPTER = 'blog.account_adapter.NoNewUsersAccountAdapter'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

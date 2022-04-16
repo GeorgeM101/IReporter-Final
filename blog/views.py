@@ -1,5 +1,6 @@
+from flask_login import login_required
 import folium
-from django.shortcuts import render
+from django.views import View
 from django.http import HttpResponse
 from .models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -8,6 +9,11 @@ from django.shortcuts import render, HttpResponse, redirect
 from .forms import Video_form, SearchForm
 from .models import Video, Search
 import geocoder
+
+
+class Dashboard(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'blog/dashboard.html')
 
 
 def about(request):
