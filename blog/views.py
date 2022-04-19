@@ -7,13 +7,22 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, HttpResponse, redirect
 from .forms import Video_form, SearchForm
-from .models import Video, Search
+from .models import Video, Search, Post
 import geocoder
+from django.utils.timezone import datetime
 
 
-class Dashboard(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'blog/dashboard.html')
+def Dashboard(request):
+    today = datetime.today()
+    posts = Post.objects.filter(date_posted__year=today.year,
+                                date_posted__month=today.month, date_posted__day=today.day)
+
+    context = {
+        'posts': posts,
+
+    }
+
+    return render(request, 'blog/dashboard.html', context)
 
 
 def about(request):
@@ -33,7 +42,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -48,7 +57,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

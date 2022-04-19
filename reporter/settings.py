@@ -155,5 +155,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 ACCOUNT_ADAPTER = 'blog.account_adapter.NoNewUsersAccountAdapter'
+LOGIN_REDIRECT_URL = 'dashboard'
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
